@@ -14,13 +14,12 @@ class CommandManager extends ListenerAdapter {
   val commands: ListBuffer[Command] = new ListBuffer[Command]
 
   //Please note that this command does not work.
-  commands += new CommandBuilder("purple")
-    .withMaxArgs(0)
-      .withExecutor(context => {
-        Stilbot.jda.getPresence.setGame(null)
-        Stilbot.jda.getPresence.setPresence(new GameImpl("I wanna be purple", "https://discord.gg/JvVdMk4", GameType.TWITCH), false)
-      })
-    .build()
+  commands += new Command("purple",
+    maxArgs = 0,
+    executor = context => {
+      Stilbot.jda.getPresence.setGame(null)
+      Stilbot.jda.getPresence.setPresence(new GameImpl("I wanna be purple", "https://discord.gg/JvVdMk4", GameType.TWITCH), false)
+    })
 
   override def onMessageReceived(event: MessageReceivedEvent): Unit = {
 

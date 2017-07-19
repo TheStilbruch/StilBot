@@ -1,12 +1,10 @@
 package com.stilbruch.stilbot.command
 
-class Command(builder: CommandBuilder) {
-
-  val name = builder.name
-  val maxArgs = builder.maxArgs
-  val minArgs = builder.minArgs
-  val deleteCommandMessage = builder.deleteCommandMessage
-  val executor = builder.executor
+class Command(name: String,
+              maxArgs: Int = -1,
+              minArgs: Int = -1,
+              deleteCommandMessage: Boolean = true,
+              executor: (CommandContext => Unit) = (cmd => ())) {
 
   def execute(context: CommandContext): Unit = {
 
@@ -24,40 +22,6 @@ class Command(builder: CommandBuilder) {
 
   def matchesCommand(input: String) = {
     name.toLowerCase.equals(input.toLowerCase)
-  }
-
-}
-
-class CommandBuilder(commandName: String) {
-
-  val name = commandName
-  var maxArgs = -1
-  var minArgs = -1
-  var deleteCommandMessage = true
-  var executor: CommandContext => Unit = _
-
-  def withMaxArgs(num: Int): CommandBuilder = {
-    this.maxArgs = num
-    this
-  }
-
-  def withMinArgs(num: Int): CommandBuilder = {
-    this.minArgs = num
-    this
-  }
-
-  def withDeleteCommandMessage(delete: Boolean): CommandBuilder = {
-    this.deleteCommandMessage = delete
-    this
-  }
-
-  def withExecutor(executor: CommandContext => Unit): CommandBuilder = {
-    this.executor = executor
-    this
-  }
-
-  def build(): Command = {
-    new Command(this)
   }
 
 }
