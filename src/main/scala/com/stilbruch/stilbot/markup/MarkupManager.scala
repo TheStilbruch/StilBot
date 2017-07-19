@@ -36,7 +36,7 @@ class MarkupManager extends ListenerAdapter {
     '&' -> (_.toCharArray.map(c => emojis.getOrElse(c, s":regional_indicator_${c.toLower}:")).mkString)
   )
 
-  def withMarkup(input: String): String = {
+  def withMarkup(input: String) = {
 
     var markedString = new String(input)
 
@@ -47,12 +47,12 @@ class MarkupManager extends ListenerAdapter {
       })
     }
 
-    return markedString
+   markedString
   }
 
   override def onMessageReceived(event: MessageReceivedEvent): Unit = {
 
-    if (event.getAuthor.getIdLong != Stilbot.getClientId || event.getMessage.getRawContent.startsWith(Stilbot.commandPrefix)){
+    if (event.getAuthor.getIdLong != Stilbot.clientId || event.getMessage.getRawContent.startsWith(Stilbot.commandPrefix)){
       return
     }
 

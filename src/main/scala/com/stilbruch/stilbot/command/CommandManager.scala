@@ -17,14 +17,14 @@ class CommandManager extends ListenerAdapter {
   commands += new CommandBuilder("purple")
     .withMaxArgs(0)
       .withExecutor(context => {
-        Stilbot.getJda.getPresence.setGame(null)
-        Stilbot.getJda.getPresence.setPresence(new GameImpl("I wanna be purple", "https://discord.gg/JvVdMk4", GameType.TWITCH), false)
+        Stilbot.jda.getPresence.setGame(null)
+        Stilbot.jda.getPresence.setPresence(new GameImpl("I wanna be purple", "https://discord.gg/JvVdMk4", GameType.TWITCH), false)
       })
     .build()
 
   override def onMessageReceived(event: MessageReceivedEvent): Unit = {
 
-    if (event.getAuthor.getIdLong != Stilbot.getClientId || !event.getMessage.getRawContent.startsWith(Stilbot.commandPrefix)){
+    if (event.getAuthor.getIdLong != Stilbot.clientId || !event.getMessage.getRawContent.startsWith(Stilbot.commandPrefix)){
       return
     }
 

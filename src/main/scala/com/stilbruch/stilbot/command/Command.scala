@@ -22,7 +22,7 @@ class Command(builder: CommandBuilder) {
     executor.apply(context)
   }
 
-  def matchesCommand(input: String): Boolean = {
+  def matchesCommand(input: String) = {
     name.toLowerCase.equals(input.toLowerCase)
   }
 

@@ -6,12 +6,9 @@ import net.dv8tion.jda.core.{AccountType, JDA, JDABuilder}
 
 object Stilbot {
 
-  var token: Option[String] = None
-  var clientId: Option[Long] = None
-  var jda: Option[JDA] = None
-
-  def getClientId = clientId.get
-  def getJda = jda.get
+  var token: String = _
+  var clientId: Long = _
+  var jda: JDA = _
 
   val commandPrefix = ".."
 
@@ -21,17 +18,17 @@ object Stilbot {
       throw new RuntimeException("Invalid arguments!")
     }
 
-    token = Some(args(0))
-    clientId = Some(args(1).toLong)
-    jda = Some(new JDABuilder(AccountType.CLIENT)
-        .setToken(token.get)
-        .buildAsync())
+    token = args(0)
+    clientId = args(1).toLong
+    jda = new JDABuilder(AccountType.CLIENT)
+        .setToken(token)
+        .buildAsync()
 
     val commandManager = new CommandManager
     val markupManager = new MarkupManager
 
-    jda.get.addEventListener(commandManager)
-    jda.get.addEventListener(markupManager)
+    jda.addEventListener(commandManager)
+    jda.addEventListener(markupManager)
 
   }
 
