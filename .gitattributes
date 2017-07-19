@@ -1,6 +1,21 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 
+.gradle
+build/
+out/
+gradle/
+build/
+.idea/
+.gradle/
+
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Cache of project
+.gradletasknamecache
+
 # Custom for Visual Studio
 *.cs     diff=csharp
 
